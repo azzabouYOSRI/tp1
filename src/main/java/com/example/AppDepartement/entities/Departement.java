@@ -29,6 +29,9 @@ public class Departement {
     public Departement() {
     }
 
+    public Departement(int x, String informatique) {
+    }
+
     public Long getId() {
         return id;
     }
