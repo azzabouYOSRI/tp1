@@ -1,58 +1,60 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
-
-/*
-package com.yosriazabou.tp1.Entities;
+package com.example.AppDepartement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
-
+/**
+ * @author YOSRI AZABOU
+ */
 @Entity
-@Table
-
+@Table(name = "T_Enseignant")
 public class Enseignant {
-@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-@column(name = "id")
-private Long id;
-@column(name = "nom")
-private String nom;
-@column(name = "prenom")
-private String prenom;
-@column(name = "grade")
-private String grade;
-@column(name = "specialite")
-private String specialite;
-@column(name = "email")
-    private String email;
-@column(name = "telephone")
-    private String telephone;
-@JsonProperty({"hibernateLazyInitializer","handler"})
-@ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name = "dept_id", referencedColumnName = "id")
-@column(name = "departement")
-    private String departement;
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Enseignant(long id, String nom, String prenom, String email, String telephone) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-    }
+    @Column(name = "nom", length = 30)
+    private String nom;
+
+    @Column(name = "prenom", length = 30)
+    private String prenom;
+
+    @Column(name = "grade", length = 30)
+    private String grade;
+
+    @Column(name = "address", length = 30)
+    private String address;
+
+    @Column(name = "numerotelephone", length = 30)
+    private String numerotelephone;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "departement_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+
+    private Departement departement;
 
     public Enseignant() {
-
     }
 
-    public String getId() {
+    public Enseignant(String nom, String prenom, String grade, String address, String numeroTelephoen) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.grade = grade;
+        this.address = address;
+        this.numerotelephone = numeroTelephoen;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,21 +74,39 @@ private String specialite;
         this.prenom = prenom;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getAddress() {
+        return address;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+
+    public String getNumerotelephone() {
+        return numerotelephone;
+    }
+
+    public void setNumerotelephone(String numerotelephone) {
+        this.numerotelephone = numerotelephone;
+    }
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+
+
+
+
 }
-
- */
