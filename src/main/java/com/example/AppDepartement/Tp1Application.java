@@ -25,7 +25,7 @@ public class Tp1Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        dep.save(new Departement(0,"Informatique"));
+dep.save(new Departement(null,"Informatique"));
+dep.save(new Departement(null,"Mathematique"));
     }
 }

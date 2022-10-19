@@ -32,6 +32,9 @@ public class Departement {
     public Departement(int x, String informatique) {
     }
 
+    public Departement(Integer integer, String informatique) {
+    }
+
     public Long getId() {
         return id;
     }
