@@ -6,16 +6,19 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author YOSRI AZABOU
  */
 @Entity
-@Table(name = "T_Enseignant")
-public class Enseignant {
+@Table(name = "t_Enseignant")
+public class Enseignant implements java.io.Serializable {
+    @ManyToMany(mappedBy = "enseignant")
+    List<Student>students;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_ens;
 
     @Column(name = "nom", length = 30)
     private String nom;
@@ -33,7 +36,7 @@ public class Enseignant {
     private String numerotelephone;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "departement_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
 
@@ -42,7 +45,8 @@ public class Enseignant {
     public Enseignant() {
     }
 
-    public Enseignant(String nom, String prenom, String grade, String address, String numeroTelephoen) {
+    public Enseignant(Long id_ens,String nom, String prenom, String grade, String address, String numeroTelephoen) {
+        this.id_ens = id_ens;
         this.nom = nom;
         this.prenom = prenom;
         this.grade = grade;
@@ -50,12 +54,15 @@ public class Enseignant {
         this.numerotelephone = numeroTelephoen;
     }
 
+    public Enseignant(String nom, String prenom, String email, String password, String adresse, int codePostal, String dateNaissance) {
+    }
+
     public Long getId() {
-        return id;
+        return id_ens;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_ens = id;
     }
 
     public String getNom() {
@@ -106,7 +113,36 @@ public class Enseignant {
         this.departement = departement;
     }
 
+    public Enseignant(String nom, String prenom, String grade, String address, String numerotelephone, Departement departement) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.grade = grade;
+        this.address = address;
+        this.numerotelephone = numerotelephone;
+        this.departement = departement;
+    }
 
 
 
+    public Enseignant(List<Student> students, String nom, String prenom, String grade, String address, String numerotelephone, Departement departement) {
+        this.students = students;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.grade = grade;
+        this.address = address;
+        this.numerotelephone = numerotelephone;
+        this.departement = departement;
+    }
+
+
+    public Enseignant(List<Student> students, Long id_ens, String nom, String prenom, String grade, String address, String numerotelephone, Departement departement) {
+        this.students = students;
+        this.id_ens = id_ens;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.grade = grade;
+        this.address = address;
+        this.numerotelephone = numerotelephone;
+        this.departement = departement;
+    }
 }

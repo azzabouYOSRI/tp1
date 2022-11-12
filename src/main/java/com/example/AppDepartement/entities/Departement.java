@@ -26,6 +26,12 @@ public class Departement {
         this.enseignant = enseignant;
     }
 
+    public Departement(String nom, List<Enseignant> enseignant) {
+        this.nom = nom;
+        this.enseignant = enseignant;
+    }
+    
+
     public Departement() {
     }
 
@@ -34,6 +40,7 @@ public class Departement {
 
     public Departement(Integer integer, String informatique) {
     }
+
 
     public Long getId() {
         return id;
@@ -58,5 +65,8 @@ public class Departement {
     public void setEnseignant(List<Enseignant> enseignant) {
         this.enseignant = enseignant;
     }
+    
+    
+    
 
 }

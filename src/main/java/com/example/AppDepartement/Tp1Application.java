@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  */
 @SpringBootApplication
 @EntityScan(basePackages = {"com.example.AppDepartement.entities"})
-public class Tp1Application implements CommandLineRunner {
+public class Tp1Application {
     private  DepartementRepository departementRepository;
 
     @Autowired
@@ -23,9 +23,9 @@ public class Tp1Application implements CommandLineRunner {
         SpringApplication.run(Tp1Application.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-dep.save(new Departement(null,"Informatique"));
-dep.save(new Departement(null,"Mathematique"));
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+////dep.save(new Departement(null,"Informatique"));
+////dep.save(new Departement(null,"Mathematique"));
+//    }
 }
